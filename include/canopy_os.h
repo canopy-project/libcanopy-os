@@ -18,6 +18,15 @@
 #ifndef CANOPY_OS_INCLUDED
 #define CANOPY_OS_INCLUDED
 
+#include <stddef.h>
+
+void * canopy_os_alloc(size_t size);
+void * canopy_os_calloc(int count, size_t size);
+void canopy_os_free(void *ptr);
+void canopy_os_log(const char *msg, ...);
+void canopy_os_assert(int condition);
+
+
 #endif // CANOPY_OS_INCLUDED
 
 
