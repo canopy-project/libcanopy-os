@@ -15,6 +15,10 @@
 // canopy_os.h
 // OS Abstraction Layer for Canopy
 
+// string.h methods are not provided here because they are present on all
+// platforms of interest.  However, you should free memory returned by the
+// string.h routines using canopy_os_free.
+
 #ifndef CANOPY_OS_INCLUDED
 #define CANOPY_OS_INCLUDED
 
@@ -45,6 +49,8 @@ void canopy_os_free(void *ptr);
 
 int canopy_os_vsnprintf(char *buf, size_t len, const char *msg, va_list ap);
 void canopy_os_log(const char *msg, ...);
+
+char * canopy_os_strdup(const char *src);
 
 #ifdef __cplusplus
 }
