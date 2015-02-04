@@ -18,14 +18,37 @@
 #ifndef CANOPY_OS_INCLUDED
 #define CANOPY_OS_INCLUDED
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <stdarg.h>
 #include <stddef.h>
+
+#ifdef __linux__
+#include <assert.h>
+#define CANOPY_OS_ASSERT assert
+#else
+#define CANOPY_OS_ASSERT(cond) canopy_os_assert(cond, #cond, __FILE__, __LINE__)
+void canopy_os_assert(
+        int cond,
+        const char *condString,
+        const char *filename,
+        const char* lineno);
+#endif
 
 void * canopy_os_alloc(size_t size);
 void * canopy_os_calloc(int count, size_t size);
 void canopy_os_free(void *ptr);
-void canopy_os_log(const char *msg, ...);
-void canopy_os_assert(int condition);
 
+#define CANOPY_OS_MSG_MAX_LENGTH 127
+
+void canopy_os_vsnprintf(char *buf, size_t len, const char *msg, va_list ap);
+void canopy_os_log(const char *msg, ...);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // CANOPY_OS_INCLUDED
 
