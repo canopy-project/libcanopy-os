@@ -34,7 +34,7 @@ void canopy_os_assert(
         int cond,
         const char *condString,
         const char *filename,
-        const char* lineno);
+        int lineno);
 #endif
 
 void * canopy_os_alloc(size_t size);
@@ -43,7 +43,7 @@ void canopy_os_free(void *ptr);
 
 #define CANOPY_OS_MSG_MAX_LENGTH 127
 
-void canopy_os_vsnprintf(char *buf, size_t len, const char *msg, va_list ap);
+int canopy_os_vsnprintf(char *buf, size_t len, const char *msg, va_list ap);
 void canopy_os_log(const char *msg, ...);
 
 #ifdef __cplusplus
